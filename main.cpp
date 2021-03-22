@@ -77,16 +77,11 @@ void push(Queue &queue, Node &node) {
         Element->Data = node.Data;
         Element->next = nullptr;
         queue.First = Element;
-    } else if ((queue.First != nullptr) && (queue.Last == nullptr)) {
-        Node *Element = new Node;
-        Element->Data = node.Data;
-        Element->next = nullptr;
-        queue.First->next = Element;
-        queue.Last = Element;
     } else {
         Node *Element = new Node;
         Element->Data = node.Data;
-        queue.Last->next = Element;
+        if (queue.Last != nullptr)
+            queue.Last->next = Element;
         Element->next = nullptr;
         queue.Last = Element;
     }
