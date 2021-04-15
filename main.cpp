@@ -37,7 +37,7 @@ void destructor(Queue &queue) {
         delete queue.First;
         queue.First = Element;
     }
-    queue.Last= nullptr;
+    queue.Last = nullptr;
 }
 
 unsigned int size(const Stack &stack) {
@@ -77,11 +77,11 @@ void push(Queue &queue, Node &node) {
         Element->Data = node.Data;
         Element->next = nullptr;
         queue.First = Element;
+        queue.Last = Element;
     } else {
         Node *Element = new Node;
         Element->Data = node.Data;
-        if (queue.Last != nullptr)
-            queue.Last->next = Element;
+        queue.Last->next = Element;
         Element->next = nullptr;
         queue.Last = Element;
     }
@@ -118,7 +118,8 @@ void print(const Stack &stack) {
         std::cout << std::endl;
     } else std::cout << "Stack is empty" << std::endl;
 }
-void print(const Queue& queue){
+
+void print(const Queue &queue) {
     if (queue.First != nullptr) {
         Node *Element = queue.First;
         while (Element != nullptr) {
@@ -126,7 +127,7 @@ void print(const Queue& queue){
             Element = Element->next;
         }
         std::cout << std::endl;
-    } else std::cout << "Stack is empty" << std::endl;
+    } else std::cout << "Queue is empty" << std::endl;
 }
 
 
@@ -158,12 +159,12 @@ int main() {
     constructor(Test1);
     push(Test1, FirstData);
     push(Test1, SecondData);
-    push(Test1,ThirdData);
-    std::cout<<size(Test1)<<std::endl;
+    push(Test1, ThirdData);
+    std::cout << size(Test1) << std::endl;
     print(Test1);
-    ThirdData=pop(Test1);
-    std::cout<<ThirdData.Data<<std::endl;
-    std::cout<<size(Test1)<<std::endl;
+    ThirdData = pop(Test1);
+    std::cout << ThirdData.Data << std::endl;
+    std::cout << size(Test1) << std::endl;
     print(Test1);
     destructor(Test1);
     print(Test1);
